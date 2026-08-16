@@ -1,0 +1,35 @@
+name: Demo GitHub Action
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  docfx_build_and_upload:
+    runs-on: ubuntu-latest
+    name: Build Docfx and Upload Documentation
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+    - uses: actions/setup-node@v7
+      with:
+        node-version: 24
+    - name: Install Docfx
+      run: dotnet tool install -g docfx
+    - name: Build Documentation
+      run: docfx build documentation/docfx.json
+    - uses: azure/login@v3
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Upload to blob storage
+      uses: azure/CLI@v2
+      with:
+        inlineScript: |
+          az storage blob upload-batch --account-name edgeofcode --auth-mode key -d '$web' -s ./documentation/_site/
+          az account show
