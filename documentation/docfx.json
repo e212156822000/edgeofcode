@@ -14,8 +14,8 @@
       }
     ],
     "globalMetadata": {
-      "_appTitle": "docfx",
-      "_appName": "docfx",
+      "_appTitle": "Learning Notes",
+      "_appName": "Learning Notes",
       "pdf": true
     },
     "output": "_site",

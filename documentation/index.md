@@ -1,2 +1,5 @@
-# Hello Word
-This is first publish from Github Action
+# 關於這裡
+這是一個屬於個人的學習筆記網站，或許你可以在這裡挖到些你需要的資訊。
+
+# 關於我
+我叫Jolin，是一名軟體工程師。興趣是閱讀和旅遊。
